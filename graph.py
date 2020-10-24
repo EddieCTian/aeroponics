@@ -19,5 +19,5 @@ class Graph:
         plt.title(self.title)
         plt.xlabel(self.x_label)
         plt.ylabel(self.y_label)
-        plt.savefig(self.name, bbox_inches='tight')
+        plt.savefig("graphs/"+self.name, bbox_inches='tight')
         return True
