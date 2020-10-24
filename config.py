@@ -1,0 +1,19 @@
+ON_TIME=60  #seconds
+OFF_TIME=5  #minutes
+
+SENSOR_UPDATE_TIME=10 #time in minute
+
+#danger limits
+PH_HIGH=7
+PH_LOW=6
+TEMP_HIGH=25
+TEMP_LOW=22
+
+#pins on pi
+SDA=2
+SCL=3
+PUMP=14
+
+
+OFF_TIME=OFF_TIME*60
+SENSOR_UPDATE_TIME=SENSOR_UPDATE_TIME*60
