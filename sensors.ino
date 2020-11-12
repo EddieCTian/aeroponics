@@ -5,23 +5,25 @@
 
 SHT1x sht1x(dataPin, clockPin);
 
+char a;
+
 void setup(){
     Serial.begin(9600);
-    byte a;
+
 }
 
 void loop(){
     if (Serial.available()>0){
-        Serial.readBytes(byte, 1);
-        if (byte==0){
-            out=sht1x.readTemperatureC();
+        a = Serial.read();
+        if (a=='0'){
+            Serial.print(sht1x.readTemperatureC(), 2);
         }
-        else if (byte==1){
-            out=sht1x.readHumidity();
+        else if (a=='1'){
+            Serial.print(sht1x.readHumidity(), 2);
         }
-        else if (byte==2){
-            out=0;
+/*        else if (a=='2'){
+            some spooky ph code tbd
         }
-        Serial.write(out, 4)
+*/
     }
 }

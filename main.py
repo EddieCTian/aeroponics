@@ -13,17 +13,16 @@ sprayers=lib.Sprayers()
 while(True):
     ttime=time()
     if int(ttime)%5==0:
-        temp.update()
+        sensors.update()
         print(sensors.get_temp())
         print(sensors.get_humidity())
-
     # if int(ttime)%(config.ON_TIME)==0:
     #     sprayers.spray(config.OFF_TIME)
 
     # if int(ttime)%(config.SENSOR_UPDATE_TIME*60)==0:
     #     sensors.update()
-    #     temp.add(sensors.get_temp())
-    #     humidity.add(sensors.get_humidity())
+        temp.add(sensors.get_temp())
+        humidity.add(sensors.get_humidity())
 
-    #     temp.make_graph()
-    #     humidity.make_graph()
+        temp.make_graph()
+        humidity.make_graph()
