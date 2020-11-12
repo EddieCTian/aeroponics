@@ -16,8 +16,6 @@ ser = serial.Serial('COM3', 9600, timeout=1)
 sensors=lib.UpdateSensors(ser)
 sprayers=lib.Sprayers()
 
-global ser=serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-
 while(True):
     ttime=time()
     if int(ttime)%5==0:
