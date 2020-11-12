@@ -14,7 +14,7 @@ class Graph:
         self.y=np.insert(self.y, 0, new)
         self.y=np.delete(self.y, -1)
         return True
-    def graph(self):
+    def make_graph(self):
         plt.plot(self.x, self.y)
         plt.title(self.title)
         plt.xlabel(self.x_label)
