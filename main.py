@@ -25,8 +25,8 @@ while(True):
 
     # if int(ttime)%(config.SENSOR_UPDATE_TIME*60)==0:
     #     sensors.update()
-    #     temp.add(sensors.get_temp())
-    #     humidity.add(sensors.get_humidity())
+        temp.add(sensors.get_temp())
+        humidity.add(sensors.get_humidity())
 
     #     temp.make_graph()
     #     humidity.make_graph()
