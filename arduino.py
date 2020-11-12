@@ -1,5 +1,6 @@
-import serial
+import serial, time
 
+<<<<<<< Updated upstream
 def get_temp_from_arduino():
     ser=serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.flush()
@@ -21,3 +22,29 @@ def get_ph_from_arduino():
     data=ser.read(4)
     ser.close()
     return float(data)
+=======
+def get_temp_from_arduino(sserial):
+    time.sleep(1)
+    return write_read("temp", sserial)
+def get_humidity_from_arduino(sserial):
+    time.sleep(1)
+    return write_read("hum", sserial)
+def get_ph_from_arduino(sserial):
+    time.sleep(1)
+    return write_read("ph", sserial)
+
+def write_read(val, sserial):
+    sserial.flush()
+    sserial.write((val+"\n").encode('utf-8'))
+    while True:
+        if sserial.in_waiting>0:
+            break
+    line = sserial.readline()
+    return float(line)
+
+if __name__ == "__main__":
+    sserial = serial.Serial('COM3', 9600, timeout=1)
+    time.sleep(2)
+    print(get_temp_from_arduino(sserial))
+    print(get_humidity_from_arduino(sserial))
+>>>>>>> Stashed changes

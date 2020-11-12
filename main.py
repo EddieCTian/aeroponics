@@ -7,12 +7,23 @@ temp=graph.Graph("Temperature over the past 12 hours", "Time before current time
 ph=graph.Graph("ph over the past 12 hours", "Time before current time, hours", "ph", "ph.png")
 humidity=graph.Graph("Humidity over the past 12 hours", "Time before current time, hours", "Humidity, %RH", "humidity.png")
 
-sensors=lib.UpdateSensors()
+ser = serial.Serial('COM3', 9600, timeout=1)
+
+sensors=lib.UpdateSensors(ser)
 sprayers=lib.Sprayers()
+
+<<<<<<< Updated upstream
+while(True):
+    ttime=time()
+    if int(ttime)%5==0:
+=======
 
 while(True):
     ttime=time()
     if int(ttime)%5==0:
+        sleep(1)
+	#this is to prevent modulous from triggering multiple times in a second
+>>>>>>> Stashed changes
         sensors.update()
         print(sensors.get_temp())
         print(sensors.get_humidity())
