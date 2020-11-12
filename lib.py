@@ -1,65 +1,66 @@
-# See this for their 1115 library
-# https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/ads1015-slash-ads1115
-
-
-# sensor=2 (SDA)
-#        3 (SCL)
-# water=14 
-
-#from gpiozero import LED
-
-
-#LED placeholder class
+from gpiozero import LED
 import config
+import arduino
 from threading import Timer
 
-class LED: 
-    def __init__(self, pin):
-        self.pin=pin
-        self.on=0
-    def on(self):
-        self.on=1
-        return True
-    def off(self):
-        self.on=0
-        return True
+#LED placeholder class
+# class LED: 
+#     def __init__(self, pin):
+#         self.pin=pin
+#         self.on=0
+#     def on(self):
+#         self.on=1
+#         return True
+#     def off(self):
+#         self.on=0
+#         return True
 # end LED placeholder class
 
 class UpdateSensors:
     def __init__(self):
         self.temp=0
         self.ph=0
-        self.temp_danger=0
-        self.ph_danger=0
+        self.humidity=0
+        self.temp_danger=False
+        self.ph_danger=False
     def update(self):
         self._temp_reading()
         self._ph_reading()
+        self._humidity_reading()
         self._danger()
         return True
     def get_temp(self):
         return self.temp
+    def get_humidity(self):
+        return self.humidity
     def get_ph(self):
         return self.ph
     def get_danger(self):
         return [self.temp_danger, self.ph_danger]
-    def _ph_reading(self):
-        temp=0
-        self.temp=temp
-        return True
     def _temp_reading(self):
-        ph=0
-        self.ph=ph
+        self.temp=arduino.get_temp_from_arduino
+        return True
+    def _ph_reading(self):
+        self.ph=arduino.get_ph_from_arduino
+        return True
+    def _humidity_reading(self):
+        self.ph=arduino.get_humidity_from_arduino
         return True
     
     def _danger(self):
         if self.temp>config.TEMP_HIGH:
-            self.temp_danger=self.temp-config.TEMP_HIGH
+            self.temp_danger=True
         elif self.temp<config.TEMP_LOW:
-            self.temp_danger=config.TEMP_LOW-self.temp
+            self.temp_danger=True
+        else:
+            self.temp_danger=False
+
         if self.ph>config.PH_HIGH:
-            self.ph_danger=self.ph-config.PH_HIGH
+            self.ph_danger=True
         elif self.ph<config.PH_LOW:
-            self.ph_danger=config.PH_LOW-self.ph
+            self.ph_danger=True
+        else:
+            self.temp_danger=False
         return True
 
 class Sprayers:
