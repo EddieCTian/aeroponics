@@ -12,18 +12,11 @@ ser = serial.Serial('COM3', 9600, timeout=1)
 sensors=lib.UpdateSensors(ser)
 sprayers=lib.Sprayers()
 
-<<<<<<< Updated upstream
-while(True):
-    ttime=time()
-    if int(ttime)%5==0:
-=======
-
 while(True):
     ttime=time()
     if int(ttime)%5==0:
         sleep(1)
-	#this is to prevent modulous from triggering multiple times in a second
->>>>>>> Stashed changes
+        #this is to prevent modulous from triggering multiple times in a second
         sensors.update()
         print(sensors.get_temp())
         print(sensors.get_humidity())
@@ -32,8 +25,8 @@ while(True):
 
     # if int(ttime)%(config.SENSOR_UPDATE_TIME*60)==0:
     #     sensors.update()
-        temp.add(sensors.get_temp())
-        humidity.add(sensors.get_humidity())
+    #     temp.add(sensors.get_temp())
+    #     humidity.add(sensors.get_humidity())
 
-        temp.make_graph()
-        humidity.make_graph()
+    #     temp.make_graph()
+    #     humidity.make_graph()
