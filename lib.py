@@ -24,8 +24,9 @@ class UpdateSensors:
         self.temp_danger=False
         self.ph_danger=False
     def update(self):
+	print('updating')
         self._temp_reading()
-        self._ph_reading()
+        #self._ph_reading()
         self._humidity_reading()
         self._danger()
         return True
@@ -38,13 +39,13 @@ class UpdateSensors:
     def get_danger(self):
         return [self.temp_danger, self.ph_danger]
     def _temp_reading(self):
-        self.temp=arduino.get_temp_from_arduino
+        self.temp=arduino.get_temp_from_arduino()
         return True
     def _ph_reading(self):
-        self.ph=arduino.get_ph_from_arduino
+        self.ph=arduino.get_ph_from_arduino()
         return True
     def _humidity_reading(self):
-        self.ph=arduino.get_humidity_from_arduino
+        self.humidity=arduino.get_humidity_from_arduino()
         return True
     
     def _danger(self):

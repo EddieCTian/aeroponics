@@ -1,23 +1,32 @@
 import serial
 
 def get_temp_from_arduino():
-    ser=serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.flush()
-    ser.write(0x00)
-    data=ser.read(4)
-    ser.close()
+    #ser.write('0')
+    while True:
+        if ser.in_waiting>0:
+            data=ser.readline()
+            print("got temp")
+            break
+    print(type(data))
+    print("This is the temperature: "+ data)
     return data
 def get_humidity_from_arduino():
-    ser=serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.flush()
-    ser.write(0x01)
-    data=ser.read(4)
-    ser.close()
+    #ser.write('1')
+    while True:
+        if ser.in_waiting>0:
+            data=ser.readline()
+            print("got humidity")
+            break
+    print(type(data))
+    print("This is the humidity: "+ data)
     return data
 def get_ph_from_arduino():
-    ser=serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.flush()
-    ser.write(0x02)
-    data=ser.read(4)
-    ser.close()
-    return float(data)
+    #ser.write('2')
+    while True:
+        if ser.in_waiting>0:
+            data=ser.readline().decode('utf-8').rstrip()
+            break
+    return data
