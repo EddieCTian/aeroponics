@@ -25,8 +25,9 @@ class UpdateSensors:
         self.temp_danger=False
         self.ph_danger=False
     def update(self):
+	print('updating')
         self._temp_reading()
-        self._ph_reading()
+        #self._ph_reading()
         self._humidity_reading()
         self._danger()
         return True

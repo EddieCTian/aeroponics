@@ -1,16 +1,22 @@
-import lib, graph, config
-from time import time
+#import graph
+#pyplot doesn't seem to work on pi
+
+import lib, config
+from time import time, sleep
+import serial
 
 degree_sign= u'\N{DEGREE SIGN}'
 
-temp=graph.Graph("Temperature over the past 12 hours", "Time before current time, hours", "Temperature, "+degree_sign+"C", "temp.png")
-ph=graph.Graph("ph over the past 12 hours", "Time before current time, hours", "ph", "ph.png")
-humidity=graph.Graph("Humidity over the past 12 hours", "Time before current time, hours", "Humidity, %RH", "humidity.png")
+#temp=graph.Graph("Temperature over the past 12 hours", "Time before current time, hours", "Temperature, "+degree_sign+"C", "temp.png")
+#ph=graph.Graph("ph over the past 12 hours", "Time before current time, hours", "ph", "ph.png")
+#humidity=graph.Graph("Humidity over the past 12 hours", "Time before current time, hours", "Humidity, %RH", "humidity.png")
 
 ser = serial.Serial('COM3', 9600, timeout=1)
 
 sensors=lib.UpdateSensors(ser)
 sprayers=lib.Sprayers()
+
+global ser=serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
 while(True):
     ttime=time()
