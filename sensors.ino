@@ -5,25 +5,31 @@
 
 SHT1x sht1x(dataPin, clockPin);
 
-char a;
+String a="temp";
+String b="hum";
+float temp, hum;
 
-void setup(){
-    Serial.begin(9600);
-
+void setup() {
+  Serial.begin(9600);
 }
 
-void loop(){
-    if (Serial.available()>0){
-        a = Serial.read();
-        if (a=='0'){
-            Serial.print(sht1x.readTemperatureC(), 2);
-        }
-        else if (a=='1'){
-            Serial.print(sht1x.readHumidity(), 2);
-        }
-/*        else if (a=='2'){
-            some spooky ph code tbd
-        }
-*/
+void loop() {
+  
+  if (Serial.available() > 0) {
+    temp=(float)sht1x.readTemperatureC();
+       
+    hum=(float)sht1x.readHumidity();
+
+        
+    String data = Serial.readStringUntil('\n');
+    if (a==data){
+      Serial.print(temp);
     }
+    else if (b==data){
+      Serial.print(hum);
+    }
+    else {
+      Serial.print("0");
+    }
+  }
 }
