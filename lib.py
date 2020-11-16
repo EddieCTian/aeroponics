@@ -18,7 +18,7 @@ from threading import Timer
 
 class UpdateSensors:
     def __init__(self, serial):
-        self.serial=serial
+        self.ser=serial
         self.temp=0
         self.ph=0
         self.humidity=0
@@ -40,13 +40,13 @@ class UpdateSensors:
     def get_danger(self):
         return [self.temp_danger, self.ph_danger]
     def _temp_reading(self):
-        self.temp=arduino.get_temp_from_arduino(ser)
+        self.temp=arduino.get_temp_from_arduino(self.ser)
         return True
     def _ph_reading(self):
-        self.ph=arduino.get_ph_from_arduino(ser)
+        self.ph=arduino.get_ph_from_arduino(self.ser)
         return True
     def _humidity_reading(self):
-        self.humidity=arduino.get_humidity_from_arduino(ser)
+        self.humidity=arduino.get_humidity_from_arduino(self.ser)
         return True
     
     def _danger(self):
