@@ -1,5 +1,4 @@
 import serial, time
-
 def get_temp_from_arduino(sserial):
     time.sleep(1)
     return write_read("temp", sserial)
