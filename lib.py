@@ -27,11 +27,7 @@ class UpdateSensors:
     def update(self):
 	print('updating')
         self._temp_reading()
-<<<<<<< HEAD
-        self._ph_reading()
-=======
         #self._ph_reading()
->>>>>>> 2c75e5d43f6b4469e53b066c78f1dd7c1e503385
         self._humidity_reading()
         self._danger()
         return True
@@ -44,16 +40,6 @@ class UpdateSensors:
     def get_danger(self):
         return [self.temp_danger, self.ph_danger]
     def _temp_reading(self):
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        self.temp=arduino.get_temp_from_arduino
-        return True
-    def _ph_reading(self):
-        self.ph=arduino.get_ph_from_arduino
-        return True
-    def _humidity_reading(self):
-        self.ph=arduino.get_humidity_from_arduino
-=======
         self.temp=arduino.get_temp_from_arduino(ser)
         return True
     def _ph_reading(self):
@@ -61,16 +47,6 @@ class UpdateSensors:
         return True
     def _humidity_reading(self):
         self.humidity=arduino.get_humidity_from_arduino(ser)
->>>>>>> Stashed changes
-=======
-        self.temp=arduino.get_temp_from_arduino()
-        return True
-    def _ph_reading(self):
-        self.ph=arduino.get_ph_from_arduino()
-        return True
-    def _humidity_reading(self):
-        self.humidity=arduino.get_humidity_from_arduino()
->>>>>>> 2c75e5d43f6b4469e53b066c78f1dd7c1e503385
         return True
     
     def _danger(self):
