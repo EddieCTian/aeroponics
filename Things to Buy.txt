@@ -1,0 +1,6 @@
+For aeroponics:
+camera? 
+	image detection to measure height of plants?
+		could maybe do a filter then take pixel counts
+		or object detection and measure the height of the plants
+pH sensor?
